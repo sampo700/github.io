@@ -13,13 +13,13 @@
             background-position: center;
         }
         
-        .kitchen-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        .hover-effect {
+            transition: all 0.3s ease;
         }
         
-        .kitchen-card {
-            transition: all 0.3s ease;
+        .hover-effect:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
         
         .nav-link {
@@ -52,6 +52,266 @@
         .contact-form input:focus, .contact-form textarea:focus {
             border-color: #f59e0b;
             box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
+        }
+        
+        /* Стили для модального окна */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal-content {
+            background: white;
+            width: 90%;
+            max-width: 900px;
+            height: 80%;
+            max-height: 700px;
+            border-radius: 16px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            animation: slideUp 0.3s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+        
+        .modal-close:hover {
+            color: #f59e0b;
+        }
+        
+        .modal-top {
+            height: 50%;
+            background: #f8f8f8;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .modal-bottom {
+            height: 50%;
+            padding: 24px;
+            background: linear-gradient(to bottom, #fff, #f9fafb);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow-y: auto;
+        }
+        
+        @media (max-width: 640px) {
+            .modal-content {
+                height: 90%;
+                max-height: 600px;
+            }
+            .modal-top {
+                height: 45%;
+            }
+            .modal-bottom {
+                height: 55%;
+                padding: 16px;
+            }
+            .modal-submit {
+                padding: 8px 12px;
+                font-size: 0.85rem;
+            }
+            .modal-title {
+                font-size: 1.5rem;
+            }
+            .modal-description {
+                font-size: 0.85rem;
+                line-height: 1.6;
+            }
+            .modal-price {
+                font-size: 1.1rem;
+            }
+        }
+        
+        /* Стили для слайдера */
+        .slider-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .slider {
+            display: flex;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+        
+        .slide {
+            min-width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            transition: background 0.3s ease, transform 0.2s ease, opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+        
+        .slider-btn:hover {
+            background: #f59e0b;
+            transform: translateY(-50%) scale(1.05);
+        }
+        
+        .slider-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+        
+        .slider-btn-left {
+            left: 20px;
+        }
+        
+        .slider-btn-right {
+            right: 20px;
+        }
+        
+        .slider-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+        
+        .slider-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+        }
+        
+        .dot {
+            width: 10px;
+            height: 10px;
+            background: #ccc;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .dot.active {
+            background: #f59e0b;
+        }
+        
+        /* Стили для текста */
+        .modal-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #1f2937;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            animation: textFadeIn 0.5s ease-out;
+        }
+        
+        .modal-description {
+            font-size: 0.9rem;
+            color: #4b5563;
+            line-height: 1.8;
+            margin-top: 12px;
+            animation: textFadeIn 0.6s ease-out;
+            max-height: 180px;
+            overflow-y: auto;
+            padding-right: 8px;
+        }
+        
+        .modal-price {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #f59e0b;
+            position: relative;
+            display: inline-block;
+            animation: textFadeIn 0.7s ease-out;
+            margin-top: 16px;
+        }
+        
+        .modal-price::before {
+            content: '₽';
+            font-size: 0.9rem;
+            margin-right: 4px;
+            color: #f59e0b;
+        }
+        
+        .modal-divider {
+            width: 60px;
+            height: 2px;
+            background: #e5e7eb;
+            margin: 12px 0;
+        }
+        
+        @keyframes textFadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .modal-submit {
+            transition: background 0.3s ease;
+        }
+        
+        .modal-submit:hover {
+            background: #f59e0b;
+        }
+
+        /* Стили для валидации формы */
+        .error-message {
+            display: none;
+        }
+        .error-message.visible {
+            display: block;
+        }
+        .success-message {
+            display: none;
+            background: #10b981;
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 16px;
+        }
+        .success-message.visible {
+            display: block;
         }
     </style>
 </head>
@@ -94,7 +354,7 @@
     <!-- Герой-секция -->
     <section class="hero text-white py-20 md:py-32">
         <div class="container mx-auto px-4 text-center">
-            <h1 class="text-4xl md:text-6xl font-bold mb-6">Кухни на заказ вашей мечты</h1>
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">Кухня вашей мечты</h1>
             <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Индивидуальные проекты, качественные материалы и безупречный сервис</p>
             <a href="#kitchens" class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 inline-block">Выбрать кухню</a>
         </div>
@@ -104,7 +364,7 @@
     <section class="py-12 bg-white">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="text-center p-6 rounded-lg">
+                <div class="text-center p-6 rounded-lg hover-effect">
                     <div class="bg-amber-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
                         <i class="fas fa-award text-2xl text-amber-500"></i>
                     </div>
@@ -112,7 +372,7 @@
                     <p class="text-gray-600">Мы уверены в качестве наших кухонь и даем расширенную гарантию</p>
                 </div>
                 
-                <div class="text-center p-6 rounded-lg">
+                <div class="text-center p-6 rounded-lg hover-effect">
                     <div class="bg-amber-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
                         <i class="fas fa-truck text-2xl text-amber-500"></i>
                     </div>
@@ -120,7 +380,7 @@
                     <p class="text-gray-600">Доставим и установим вашу кухню бесплатно в пределах города</p>
                 </div>
                 
-                <div class="text-center p-6 rounded-lg">
+                <div class="text-center p-6 rounded-lg hover-effect">
                     <div class="bg-amber-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
                         <i class="fas fa-cogs text-2xl text-amber-500"></i>
                     </div>
@@ -141,7 +401,7 @@
                 <!-- Кухня 1 -->
                 <div class="kitchen-card bg-white rounded-lg overflow-hidden shadow-md hover-effect">
                     <div class="relative overflow-hidden h-64">
-                        <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Классическая кухня" class="w-full h-full object-cover transition duration-500 hover:scale-110">
+                        <img src="https://images.unsplash.com/photo-1602028915047-37269d1a73f7?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Классическая кухня" class="w-full h-full object-cover transition duration-500 hover:scale-110">
                         <div class="absolute top-4 right-4 bg-amber-500 text-white px-3 py-1 rounded-full font-bold">от 120 000 ₽</div>
                     </div>
                     <div class="p-6">
@@ -152,12 +412,14 @@
                             <button class="text-amber-500 hover:text-amber-600 font-medium open-modal" 
                                 data-kitchen="Классическая" 
                                 data-price="120 000 ₽" 
-                                data-image="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-                                data-description="Элегантный классический стиль сочетает в себе роскошь и уют. Используем массив дуба или ясеня, резные фасады ручной работы, фурнитуру премиум-класса (Blum, Hettich). Подходит для просторных помещений. Возможна кастомизация: выбор оттенков (от белого до темного ореха), добавление декоративных элементов (пилястры, карнизы), интеграция современной техники. Размеры: от 2,5 м (линейная) до угловых и П-образных конфигураций. Срок изготовления: 4-6 недель."
+                                data-image="https://images.unsplash.com/photo-1602028915047-37269d1a73f7?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                data-description="Элегантный классический стиль сочетает в себе роскошь и уют. Используем массив дуба или ясеня, резные фасады ручной работы, фурнитуру премиум-класса (Blum, Hettich). Подходит для просторных помещений. Возможна кастомизация: выбор оттенков (от белого до темного ореха), добавление декоративных элементов (пилястры, карнизы), интеграция современной техники. Размеры: от 2,5 м (линейная) до угловых и П-образных конфигураций. Срок изготовления: 4اهی
+
+-6 недель."
                                 data-images='[
                                     "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
-                                    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
-                                    "https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
+                                    "https://images.unsplash.com/photo-1556911073-a517e752729c?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                                    "https://images.unsplash.com/photo-1556911073-38141963c9e0?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                                 ]'>Подробнее <i class="fas fa-arrow-right ml-1"></i></button>
                         </div>
                     </div>
@@ -166,7 +428,7 @@
                 <!-- Кухня 2 -->
                 <div class="kitchen-card bg-white rounded-lg overflow-hidden shadow-md hover-effect">
                     <div class="relative overflow-hidden h-64">
-                        <img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Модерн кухня" class="w-full h-full object-cover transition duration-500 hover:scale-110">
+                        <img src="https://images.unsplash.com/photo-1556912167-f556f1f39fdf?q=80&w=2681&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Модерн кухня" class="w-full h-full object-cover transition duration-500 hover:scale-110">
                         <div class="absolute top-4 right-4 bg-amber-500 text-white px-3 py-1 rounded-full font-bold">от 95 000 ₽</div>
                     </div>
                     <div class="p-6">
@@ -177,12 +439,12 @@
                             <button class="text-amber-500 hover:text-amber-600 font-medium open-modal" 
                                 data-kitchen="Модерн" 
                                 data-price="95 000 ₽" 
-                                data-image="https://images.unsplash.com/photo-1600210492493-0946911123ea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80"
+                                data-image="https://images.unsplash.com/photo-1556912167-f556f1f39fdf?q=80&w=2681&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                                 data-description="Современный стиль модерн идеален для динамичных интерьеров. Глянцевые фасады из МДФ с покрытием эмалью или акрилом, скрытые ручки, встроенная техника (Bosch, Siemens). Цветовые решения: белый, серый, черный или яркие акценты. Возможна установка подсветки рабочей зоны и шкафов. Компактные размеры (от 2 м) подходят для квартир-студий. Функциональные системы хранения. Срок изготовления: 3-5 недель."
                                 data-images='[
-                                    "https://images.unsplash.com/photo-1600210492493-0946911123ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80",
-                                    "https://images.unsplash.com/photo-1600585153490-76fb20a0f2b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
-                                    "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
+                                "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                                "https://images.unsplash.com/photo-1556911073-a517e752729c?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                                "https://images.unsplash.com/photo-1556911073-38141963c9e0?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                                 ]'>Подробнее <i class="fas fa-arrow-right ml-1"></i></button>
                         </div>
                     </div>
@@ -191,7 +453,7 @@
                 <!-- Кухня 3 -->
                 <div class="kitchen-card bg-white rounded-lg overflow-hidden shadow-md hover-effect">
                     <div class="relative overflow-hidden h-64">
-                        <img src="https://images.unsplash.com/photo-1600566752227-17f0baa2a6c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Скандинавская кухня" class="w-full h-full object-cover transition duration-500 hover:scale-110">
+                        <img src="https://images.unsplash.com/photo-1617228069096-4638a7ffc906?q=80&w=2671&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Скандинавская кухня" class="w-full h-full object-cover transition duration-500 hover:scale-110">
                         <div class="absolute top-4 right-4 bg-amber-500 text-white px-3 py-1 rounded-full font-bold">от 85 000 ₽</div>
                     </div>
                     <div class="p-6">
@@ -202,12 +464,12 @@
                             <button class="text-amber-500 hover:text-amber-600 font-medium open-modal" 
                                 data-kitchen="Скандинавская" 
                                 data-price="85 000 ₽" 
-                                data-image="https://images.unsplash.com/photo-1600566752227-17f0baa2a6c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                                data-image="https://images.unsplash.com/photo-1722649939747-9a8c8e13a25f?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                                 data-description="Скандинавский стиль сочетает минимализм и уют. Фасады из ЛДСП или шпона в светлых тонах (белый, светло-серый, натуральный дуб). Простые формы, открытые полки, натуральные текстуры. Подходит для небольших пространств (от 1,8 м). Возможна интеграция скрытой подсветки и экологичных материалов. Срок изготовления: 3-4 недели."
                                 data-images='[
-                                    "https://images.unsplash.com/photo-1600566752227-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
-                                    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
-                                    "https://images.unsplash.com/photo-1600210492493-0946911123ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80"
+                                "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                                "https://images.unsplash.com/photo-1556911073-a517e752729c?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                                "https://images.unsplash.com/photo-1556911073-38141963c9e0?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                                 ]'>Подробнее <i class="fas fa-arrow-right ml-1"></i></button>
                         </div>
                     </div>
@@ -216,7 +478,7 @@
                 <!-- Кухня 4 -->
                 <div class="kitchen-card bg-white rounded-lg overflow-hidden shadow-md hover-effect">
                     <div class="relative overflow-hidden h-64">
-                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Лофт кухня" class="w-full h-full object-cover transition duration-500 hover:scale-110">
+                        <img src="https://images.unsplash.com/photo-1628797279405-8cd6ffdbeb6c?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Лофт кухня" class="w-full h-full object-cover transition duration-500 hover:scale-110">
                         <div class="absolute top-4 right-4 bg-amber-500 text-white px-3 py-1 rounded-full font-bold">от 110 000 ₽</div>
                     </div>
                     <div class="p-6">
@@ -227,12 +489,12 @@
                             <button class="text-amber-500 hover:text-amber-600 font-medium open-modal" 
                                 data-kitchen="Лофт" 
                                 data-price="110 000 ₽" 
-                                data-image="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                                data-image="https://images.unsplash.com/photo-1628797279405-8cd6ffdbeb6c?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                                 data-description="Лофт-стиль для смелых интерьеров. Фасады из шпона или металла, открытые полки, элементы кирпича или бетона. Подходит для больших пространств (от 3 м). Возможна кастомизация: выбор текстур (дерево, металл), добавление барной стойки, интеграция техники в индустриальном стиле. Срок изготовления: 5-7 недель."
                                 data-images='[
-                                    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
-                                    "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
-                                    "https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
+                                "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                                "https://images.unsplash.com/photo-1556911073-a517e752729c?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                                "https://images.unsplash.com/photo-1556911073-38141963c9e0?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                                 ]'>Подробнее <i class="fas fa-arrow-right ml-1"></i></button>
                         </div>
                     </div>
@@ -241,7 +503,7 @@
                 <!-- Кухня 5 -->
                 <div class="kitchen-card bg-white rounded-lg overflow-hidden shadow-md hover-effect">
                     <div class="relative overflow-hidden h-64">
-                        <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Минимализм кухня" class="w-full h-full object-cover transition duration-500 hover:scale-110">
+                        <img src="https://images.unsplash.com/photo-1598928473162-0316ade00bbe?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Минимализм кухня" class="w-full h-full object-cover transition duration-500 hover:scale-110">
                         <div class="absolute top-4 right-4 bg-amber-500 text-white px-3 py-1 rounded-full font-bold">от 90 000 ₽</div>
                     </div>
                     <div class="p-6">
@@ -252,12 +514,12 @@
                             <button class="text-amber-500 hover:text-amber-600 font-medium open-modal" 
                                 data-kitchen="Минимализм" 
                                 data-price="90 000 ₽" 
-                                data-image="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                                data-image="https://images.unsplash.com/photo-1598928473162-0316ade00bbe?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                                 data-description="Минимализм для ценителей простоты. Фасады из МДФ с матовым покрытием, скрытые ручки, монохромные оттенки (серый, белый, черный). Подходит для любых пространств (от 1,8 м). Возможна установка умной техники и скрытых систем хранения. Экологичные материалы, высокая функциональность. Срок изготовления: 3-5 недель."
                                 data-images='[
-                                    "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
-                                    "https://images.unsplash.com/photo-1600210492493-0946911123ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80",
-                                    "https://images.unsplash.com/photo-1600585153490-76fb20a0f2b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
+                                "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                                "https://images.unsplash.com/photo-1556911073-a517e752729c?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                                "https://images.unsplash.com/photo-1556911073-38141963c9e0?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                                 ]'>Подробнее <i class="fas fa-arrow-right ml-1"></i></button>
                         </div>
                     </div>
@@ -266,7 +528,7 @@
                 <!-- Кухня 6 (Индивидуальный дизайн) -->
                 <div class="kitchen-card bg-white rounded-lg overflow-hidden shadow-md hover-effect">
                     <div class="relative overflow-hidden h-64">
-                        <img src="https://images.unsplash.com/photo-1600585153490-76fb20a0f2b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Индивидуальный дизайн" class="w-full h-full object-cover transition duration-500 hover:scale-110">
+                        <img src="https://images.unsplash.com/photo-1588854337115-1c67d9247e4d?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Индивидуальный дизайн" class="w-full h-full object-cover transition duration-500 hover:scale-110">
                         <div class="absolute top-4 right-4 bg-amber-500 text-white px-3 py-1 rounded-full font-bold">от 150 000 ₽</div>
                     </div>
                     <div class="p-6">
@@ -277,12 +539,12 @@
                             <button class="text-amber-500 hover:text-amber-600 font-medium open-modal" 
                                 data-kitchen="Индивидуальный дизайн" 
                                 data-price="150 000 ₽" 
-                                data-image="https://images.unsplash.com/photo-1600585153490-76fb20a0f2b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                                data-image="https://images.unsplash.com/photo-1588854337115-1c67d9247e4d?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                                 data-description="Полностью индивидуальный проект, созданный с учетом ваших пожеланий. Выбор любых материалов: от массива дерева до стекла и металла. Возможны нестандартные формы, уникальные цветовые решения, интеграция дизайнерской техники. Подходит для любых помещений (от 2 м). Разработка 3D-проекта включена. Срок изготовления: 6-10 недель."
                                 data-images='[
-                                    "https://images.unsplash.com/photo-1600585153490-76fb20a0f2b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
-                                    "https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
-                                    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
+                                "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                                "https://images.unsplash.com/photo-1556911073-a517e752729c?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                                "https://images.unsplash.com/photo-1556911073-38141963c9e0?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                                 ]'>Подробнее <i class="fas fa-arrow-right ml-1"></i></button>
                         </div>
                     </div>
@@ -297,7 +559,7 @@
             <span class="modal-close">×</span>
             <div class="modal-top">
                 <div class="slider-container">
-                    <button class="slider-btn slider-btn-left">
+                    <button class="slider-btn slider-btn-left" disabled>
                         <svg viewBox="0 0 24 24">
                             <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
                         </svg>
@@ -327,14 +589,20 @@
         </div>
     </div>
 
-    <!-- О нас -->
-    <section id="about" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
-                    <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Наше производство" class="rounded-lg shadow-lg w-full">
-                </div>
-                <div class="md:w-1/2">
+<!-- О нас -->
+<section id="about" class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row items-stretch"> <!-- Изменил на items-stretch -->
+            <!-- Блок с изображением -->
+            <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                <img src="https://plus.unsplash.com/premium_photo-1682147355592-dc8677611a7b?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                     alt="Наше производство" 
+                     class="rounded-lg shadow-lg w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+            </div>
+
+            <!-- Блок с текстом и кнопкой -->
+            <div class="md:w-1/2 flex flex-col">
+                <div class="flex-grow"> <!-- Контент занимает все доступное пространство -->
                     <h2 class="text-3xl font-bold mb-6">О нашей компании</h2>
                     <p class="text-gray-600 mb-4">Мы - команда профессионалов с 15-летним опытом в производстве кухонь на заказ. Наша миссия - создавать кухни, которые станут сердцем вашего дома.</p>
                     <p class="text-gray-600 mb-6">Каждая кухня изготавливается индивидуально под ваши потребности и пожелания. Мы используем только качественные материалы от проверенных поставщиков и современное оборудование.</p>
@@ -365,20 +633,26 @@
                             <span class="font-medium">Гарантия 5 лет</span>
                         </div>
                     </div>
-                    
-                    <a href="#contacts" class="inline-block bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-6 rounded-full transition duration-300">Связаться с нами</a>
+                </div>
+                
+                <!-- Кнопка прижата к низу и выровнена по левому краю -->
+                <div class="mt-auto pt-4"> <!-- Добавил pt-4 для отступа сверху -->
+                    <a href="#contacts" 
+                       class="inline-block bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-6 rounded-full transition duration-300">
+                        Связаться с нами
+                    </a>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Доставка и установка -->
     <section id="delivery" class="py-16 bg-gray-50">
         <div class="container mx-auto px-4">
             <h2 class="text-3xl font-bold text-center mb-12">Доставка и установка</h2>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded-lg shadow-md">
+                <div class="bg-white p-6 rounded-lg shadow-md hover-effect">
                     <div class="text-amber-500 text-4xl mb-4">
                         <i class="fas fa-map-marker-alt"></i>
                     </div>
@@ -400,7 +674,7 @@
                     </ul>
                 </div>
                 
-                <div class="bg-white p-6 rounded-lg shadow-md">
+                <div class="bg-white p-6 rounded-lg shadow-md hover-effect">
                     <div class="text-amber-500 text-4xl mb-4">
                         <i class="fas fa-tools"></i>
                     </div>
@@ -422,7 +696,7 @@
                     </ul>
                 </div>
                 
-                <div class="bg-white p-6 rounded-lg shadow-md">
+                <div class="bg-white p-6 rounded-lg shadow-md hover-effect">
                     <div class="text-amber-500 text-4xl mb-4">
                         <i class="fas fa-calendar-alt"></i>
                     </div>
@@ -446,7 +720,6 @@
             </div>
         </div>
     </section>
-
     <!-- Оплата -->
     <section id="payment" class="py-16 bg-white">
         <div class="container mx-auto px-4">
@@ -454,7 +727,7 @@
             
             <div class="max-w-4xl mx-auto">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                    <div class="bg-gray-50 p-6 rounded-lg border border-gray-200 hover-effect">
                         <div class="flex items-center mb-4">
                             <div class="bg-amber-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
                                 <i class="fas fa-money-bill-wave text-amber-500 text-xl"></i>
@@ -478,7 +751,7 @@
                         </ul>
                     </div>
                     
-                    <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                    <div class="bg-gray-50 p-6 rounded-lg border border-gray-200 hover-effect">
                         <div class="flex items-center mb-4">
                             <div class="bg-amber-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
                                 <i class="fas fa-credit-card text-amber-500 text-xl"></i>
@@ -503,7 +776,7 @@
                     </div>
                 </div>
                 
-                <div class="mt-8 bg-amber-50 p-6 rounded-lg border border-amber-200">
+                <div class="mt-8 bg-amber-50 p-6 rounded-lg border border-amber-200 hover-effect">
                     <div class="flex items-start">
                         <div class="bg-amber-100 w-12 h-12 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
                             <i class="fas fa-percentage text-amber-500 text-xl"></i>
@@ -525,7 +798,7 @@
             
             <div class="flex flex-col md:flex-row">
                 <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
-                    <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="bg-white p-6 rounded-lg shadow-md hover-effect">
                         <h3 class="text-xl font-bold mb-4">Менеджер по продажам</h3>
                         <div class="flex items-center mb-4">
                             <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Менеджер" class="w-16 h-16 rounded-full mr-4">
@@ -548,7 +821,7 @@
                                 <i class="fas fa-envelope text-amber-500 mt-1 mr-3"></i>
                                 <div>
                                     <p class="text-gray-500 text-sm">Email</p>
-                                    <a href="mailto:info@kuhnipremium.ru" class="font-medium hover:text-amber-500">info@kuhnipremium.ru</a>
+                                    <a href="mailto:info@kitchenspremium.ru" class="font-medium hover:text-amber-500">info@kitchenspremium.ru</a>
                                 </div>
                             </div>
                             
@@ -571,7 +844,7 @@
                         </div>
                     </div>
                     
-                    <div class="mt-6 bg-white p-6 rounded-lg shadow-md">
+                    <div class="mt-6 bg-white p-6 rounded-lg shadow-md hover-effect">
                         <h3 class="text-xl font-bold mb-4">Как нас найти</h3>
                         <div class="aspect-w-16 aspect-h-9">
                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2245.373789919745!2d37.618856315930474!3d55.75370398055238!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b54a5a738fa419%3A0x7c347d506f52311f!2z0JrRgNCw0YHQvdC-0Lkg0L_RgNC-0YHQv9C10LrRgiwg0JzQvtGB0LrQstCw!5e0!3m2!1sru!2sru!4v1623256789045!5m2!1sru!2sru" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" class="rounded-lg"></iframe>
@@ -584,28 +857,32 @@
                         <h3 class="text-xl font-bold mb-4">Оставить заявку</h3>
                         <p class="text-gray-600 mb-6">Заполните форму, и наш менеджер свяжется с вами в ближайшее время для уточнения деталей.</p>
                         
-                        <form class="contact-form space-y-4">
+                        <form id="contact-form" class="contact-form space-y-4">
                             <div>
                                 <label for="name" class="block text-gray-700 mb-1">Ваше имя</label>
-                                <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-amber-500" placeholder="Иван Иванов">
+                                <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-amber-500" placeholder="Иван Иванов">
+                                <p class="error-message text-red-500 text-sm mt-1">Пожалуйста, введите ваше имя (минимум 2 символа).</p>
                             </div>
                             
                             <div>
                                 <label for="phone" class="block text-gray-700 mb-1">Телефон</label>
-                                <input type="tel" id="phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-amber-500" placeholder="+7 (999) 123-45-67">
+                                <input type="tel" id="phone" name="phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-amber-500" placeholder="+7 (999) 123-45-67">
+                                <p class="error-message text-red-500 text-sm mt-1">Пожалуйста, введите корректный номер телефона.</p>
                             </div>
                             
                             <div>
                                 <label for="email" class="block text-gray-700 mb-1">Email</label>
-                                <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-amber-500" placeholder="ivanov@example.com">
+                                <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-amber-500" placeholder="ivanov@example.com">
+                                <p class="error-message text-red-500 text-sm mt-1">Пожалуйста, введите корректный email.</p>
                             </div>
                             
                             <div>
                                 <label for="message" class="block text-gray-700 mb-1">Сообщение</label>
-                                <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-amber-500" placeholder="Опишите вашу будущую кухню..."></textarea>
+                                <textarea id="message" name="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-amber-500" placeholder="Опишите вашу будущую кухню..."></textarea>
                             </div>
                             
                             <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-4 rounded-lg transition duration-300">Отправить заявку</button>
+                            <div id="success-message" class="success-message">Спасибо! Ваша заявка отправлена. Мы свяжемся с вами в ближайшее время.</div>
                         </form>
                     </div>
                     
@@ -635,16 +912,27 @@
     </section>
 
     <!-- Подвал -->
-    <footer class="bg-gray-800 text-white py-8">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between">
-                <div class="mb-6 md:mb-0">
+<!-- Подвал -->
+<footer class="bg-gray-800 text-white py-8">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between">
+            <!-- Левый блок (лого + описание) -->
+            <div class="mb-6 md:mb-0 relative min-h-[180px]">  <!-- Добавлен relative и min-height -->
+                <div>
                     <div class="flex items-center mb-4">
                         <i class="fas fa-utensils text-3xl text-amber-500 mr-2"></i>
                         <span class="text-2xl font-bold">Кухни<span class="text-amber-500">Премиум</span></span>
                     </div>
                     <p class="text-gray-400 max-w-md">Изготовление кухонь на заказ по индивидуальным проектам. Качество, надежность, гарантия.</p>
                 </div>
+                
+                <!-- Дубликат параграфа, прижатый к низу -->
+                <p class="text-gray-400 max-w-md absolute bottom-0 hidden md:block">
+                    <a href="https://viloriyshabalin.ru" target="_blank" class="hover:text-amber-300 transition-colors duration-200">
+                        Сайт разработал viloriyshabalin.ru
+                    </a>    
+                </p>
+            </div>
                 
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
                     <div>
@@ -676,7 +964,7 @@
                             </li>
                             <li class="flex items-start">
                                 <i class="fas fa-envelope text-amber-500 mt-1 mr-2"></i>
-                                <a href="mailto:info@kuhnipremium.ru" class="text-gray-400 hover:text-amber-400 transition duration-300">info@kuhnipremium.ru</a>
+                                <a href="mailto:info@kitchenspremium.ru" class="text-gray-400 hover:text-amber-400 transition duration-300">info@kitchenspremium.ru</a>
                             </li>
                             <li class="flex items-start">
                                 <i class="fas fa-map-marker-alt text-amber-500 mt-1 mr-2"></i>
@@ -771,12 +1059,196 @@
             });
         });
         
-        // Отправка формы
-        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+        // Валидация формы
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Спасибо! Ваша заявка отправлена. Мы свяжемся с вами в ближайшее время.');
-            this.reset();
+            
+            // Сбрасываем предыдущие ошибки
+            const errorMessages = document.querySelectorAll('.error-message');
+            errorMessages.forEach(msg => msg.classList.remove('visible'));
+            
+            const successMessage = document.getElementById('success-message');
+            successMessage.classList.remove('visible');
+            
+            // Получаем значения полей
+            const name = document.getElementById('name').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const email = document.getElementById('email').value.trim();
+            
+            let isValid = true;
+            
+            // Проверка имени
+            if (name.length < 2) {
+                document.querySelector('#name + .error-message').classList.add('visible');
+                isValid = false;
+            }
+            
+            // Проверка телефона (простой формат: +7 (код) XXX-XX-XX)
+            const phoneRegex = /^\+7\s\(\d{3}\)\s\d{3}-\d{2}-\d{2}$/;
+            if (!phoneRegex.test(phone)) {
+                document.querySelector('#phone + .error-message').classList.add('visible');
+                isValid = false;
+            }
+            
+            // Проверка email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                document.querySelector('#email + .error-message').classList.add('visible');
+                isValid = false;
+            }
+            
+            // Если всё ок, показываем сообщение об успехе
+            if (isValid) {
+                successMessage.classList.add('visible');
+                this.reset(); // Очищаем форму
+            }
+        });
+        
+        // Модальное окно
+        const modal = document.getElementById('modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDescription = document.getElementById('modal-description');
+        const modalPrice = document.getElementById('modal-price');
+        const modalSlider = document.getElementById('modal-slider');
+        const sliderDots = document.getElementById('slider-dots');
+        const openModalButtons = document.querySelectorAll('.open-modal');
+        const closeModalButton = document.querySelector('.modal-close');
+        const modalSubmitButton = document.getElementById('modal-submit');
+        const sliderBtnLeft = document.querySelector('.slider-btn-left');
+        const sliderBtnRight = document.querySelector('.slider-btn-right');
+        const sliderContainer = document.querySelector('.slider-container');
+        
+        let currentSlide = 0;
+        let images = [];
+        let autoSlideInterval;
+        
+        function updateSlider() {
+            modalSlider.style.transform = `translateX(-${currentSlide * 100}%)`;
+            document.querySelectorAll('.dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+            // Управление состоянием стрелок
+            sliderBtnLeft.disabled = currentSlide === 0;
+            sliderBtnRight.disabled = currentSlide === images.length - 1;
+        }
+        
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(() => {
+                if (currentSlide < images.length - 1) {
+                    currentSlide++;
+                } else {
+                    currentSlide = 0;
+                }
+                updateSlider();
+            }, 5000);
+        }
+        
+        function stopAutoSlide() {
+            clearInterval(autoSlideInterval);
+        }
+        
+        openModalButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                modalTitle.textContent = this.dataset.kitchen;
+                modalDescription.textContent = this.dataset.description;
+                modalPrice.textContent = `от ${this.dataset.price}`;
+                images = JSON.parse(this.dataset.images);
+                
+                // Очищаем слайдер и точки
+                modalSlider.innerHTML = '';
+                sliderDots.innerHTML = '';
+                
+                // Добавляем слайды
+                images.forEach(src => {
+                    const img = document.createElement('img');
+                    img.src = src;
+                    img.className = 'slide';
+                    img.alt = this.dataset.kitchen;
+                    modalSlider.appendChild(img);
+                });
+                
+                // Добавляем точки
+                images.forEach((_, index) => {
+                    const dot = document.createElement('div');
+                    dot.className = 'dot';
+                    dot.addEventListener('click', () => {
+                        stopAutoSlide();
+                        currentSlide = index;
+                        updateSlider();
+                        startAutoSlide();
+                    });
+                    sliderDots.appendChild(dot);
+                });
+                
+                currentSlide = 0;
+                updateSlider();
+                modal.style.display = 'flex';
+                startAutoSlide();
+            });
+        });
+        
+        // Закрытие модального окна
+        closeModalButton.addEventListener('click', () => {
+            modal.style.display = 'none';
+            stopAutoSlide();
+        });
+        
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                stopAutoSlide();
+            }
+        });
+        
+        // Переключение слайдов
+        sliderBtnRight.addEventListener('click', () => {
+            if (currentSlide < images.length - 1) {
+                stopAutoSlide();
+                currentSlide++;
+                updateSlider();
+                startAutoSlide();
+            }
+        });
+        
+        sliderBtnLeft.addEventListener('click', () => {
+            if (currentSlide > 0) {
+                stopAutoSlide();
+                currentSlide--;
+                updateSlider();
+                startAutoSlide();
+            }
+        });
+        
+        // Свайпы для мобильных устройств
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        sliderContainer.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+            stopAutoSlide();
+        });
+        
+        sliderContainer.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            if (touchStartX - touchEndX > 50 && currentSlide < images.length - 1) {
+                currentSlide++;
+            } else if (touchEndX - touchStartX > 50 && currentSlide > 0) {
+                currentSlide--;
+            }
+            updateSlider();
+            startAutoSlide();
+        });
+        
+        // Обработка кнопки "Оставить заявку" в модальном окне
+        modalSubmitButton.addEventListener('click', () => {
+            modal.style.display = 'none';
+            stopAutoSlide();
+            document.getElementById('contacts').scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('message').value = `Хочу заказать кухню "${modalTitle.textContent}"`;
         });
     </script>
+
+    <!-- Место для Cloudflare-скрипта -->
+    <!-- Вставьте сюда Cloudflare-скрипт, если используете Cloudflare -->
 </body>
 </html>
