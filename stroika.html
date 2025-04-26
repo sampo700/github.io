@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кухни на заказ | Премиум кухни по индивидуальным проектам</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .kitchen-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .kitchen-card {
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #f59e0b;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+        }
+        
+        .active:after {
+            width: 100%;
+        }
+        
+        .contact-form input, .contact-form textarea {
+            transition: all 0.3s ease;
+        }
+        
+        .contact-form input:focus, .contact-form textarea:focus {
+            border-color: #f59e0b;
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Шапка сайта -->
+    <header class="sticky top-0 z-50 bg-white shadow-md">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <i class="fas fa-utensils text-3xl text-amber-500 mr-2"></i>
+                <span class="text-2xl font-bold text-gray-800">Кухни<span class="text-amber-500">Премиум</span></span>
+            </div>
+            
+            <nav class="hidden md:flex space-x-8">
+                <a href="#kitchens" class="nav-link text-gray-700 hover:text-amber-500 font-medium py-2">Кухни</a>
+                <a href="#about" class="nav-link text-gray-700 hover:text-amber-500 font-medium py-2">О нас</a>
+                <a href="#delivery" class="nav-link text-gray-700 hover:text-amber-500 font-medium py-2">Доставка</a>
+                <a href="#payment" class="nav-link text-gray-700 hover:text-amber-500 font-medium py-2">Оплата</a>
+                <a href="#contacts" class="nav-link text-gray-700 hover:text-amber-500 font-medium py-2">Контакты</a>
+            </nav>
+            
+            <div class="md:hidden">
+                <button id="menu-toggle" class="text-gray-700 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Мобильное меню -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#kitchens" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-amber-500 hover:bg-gray-50">Кухни</a>
+                <a href="#about" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-amber-500 hover:bg-gray-50">О нас</a>
+                <a href="#delivery" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-amber-500 hover:bg-gray-50">Доставка</a>
+                <a href="#payment" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-amber-500 hover:bg-gray-50">Оплата</a>
+                <a href="#contacts" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-amber-500 hover:bg-gray-50">Контакты</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Герой-секция -->
+    <section class="hero text-white py-20 md:py-32">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">Кухни на заказ вашей мечты</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Индивидуальные проекты, качественные материалы и безупречный сервис</p>
+            <a href="#kitchens" class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 inline-block">Выбрать кухню</a>
+        </div>
+    </section>
+
+    <!-- Преимущества -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center p-6 rounded-lg">
+                    <div class="bg-amber-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-award text-2xl text-amber-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Гарантия 5 лет</h3>
+                    <p class="text-gray-600">Мы уверены в качестве наших кухонь и даем расширенную гарантию</p>
+                </div>
+                
+                <div class="text-center p-6 rounded-lg">
+                    <div class="bg-amber-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-truck text-2xl text-amber-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Бесплатная доставка</h3>
+                    <p class="text-gray-600">Доставим и установим вашу кухню бесплатно в пределах города</p>
+                </div>
+                
+                <div class="text-center p-6 rounded-lg">
+                    <div class="bg-amber-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-cogs text-2xl text-amber-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Собственное производство</h3>
+                    <p class="text-gray-600">Изготавливаем кухни на современном оборудовании под ваш проект</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Каталог кухонь -->
+    <section id="kitchens" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-4">Наши кухни</h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">Выберите стиль кухни, который подходит именно вам. Все цены указаны "от" и могут меняться в зависимости от комплектации.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Кухня 1 -->
+                <div class="kitchen-card bg-white rounded-lg overflow-hidden shadow-md hover-effect">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Классическая кухня" class="w-full h-full object-cover transition duration-500 hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-amber-500 text-white px-3 py-1 rounded-full font-bold">от 120 000 ₽</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Классическая</h3>
+                        <p class="text-gray-600 mb-4">Традиционный стиль с элементами роскоши. Массив дерева, резные фасады, натуральные материалы.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500"><i class="fas fa-clock mr-1"></i> Срок: 4-6 недель</span>
+                            <button class="text-amber-500 hover:text-amber-600 font-medium open-modal" 
+                                data-kitchen="Классическая" 
+                                data-price="120 000 ₽" 
+                                data-image="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                                data-description="Элегантный классический стиль сочетает в себе роскошь и уют. Используем массив дуба или ясеня, резные фасады ручной работы, фурнитуру премиум-класса (Blum, Hettich). Подходит для просторных помещений. Возможна кастомизация: выбор оттенков (от белого до темного ореха), добавление декоративных элементов (пилястры, карнизы), интеграция современной техники. Размеры: от 2,5 м (линейная) до угловых и П-образных конфигураций. Срок изготовления: 4-6 недель."
+                                data-images='[
+                                    "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                                    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                                    "https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
+                                ]'>Подробнее <i class="fas fa-arrow-right ml-1"></i></button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Кухня 2 -->
+                <div class="kitchen-card bg-white rounded-lg overflow-hidden shadow-md hover-effect">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Модерн кухня" class="w-full h-full object-cover transition duration-500 hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-amber-500 text-white px-3 py-1 rounded-full font-bold">от 95 000 ₽</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Модерн</h3>
+                        <p class="text-gray-600 mb-4">Современный стиль с четкими линиями. Глянцевые фасады, встроенная техника, функциональность.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500"><i class="fas fa-clock mr-1"></i> Срок: 3-5 недель</span>
+                            <button class="text-amber-500 hover:text-amber-600 font-medium open-modal" 
+                                data-kitchen="Модерн" 
+                                data-price="95 000 ₽" 
+                                data-image="https://images.unsplash.com/photo-1600210492493-0946911123ea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80"
+                                data-description="Современный стиль модерн идеален для динамичных интерьеров. Глянцевые фасады из МДФ с покрытием эмалью или акрилом, скрытые ручки, встроенная техника (Bosch, Siemens). Цветовые решения: белый, серый, черный или яркие акценты. Возможна установка подсветки рабочей зоны и шкафов. Компактные размеры (от 2 м) подходят для квартир-студий. Функциональные системы хранения. Срок изготовления: 3-5 недель."
+                                data-images='[
+                                    "https://images.unsplash.com/photo-1600210492493-0946911123ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80",
+                                    "https://images.unsplash.com/photo-1600585153490-76fb20a0f2b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                                    "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
+                                ]'>Подробнее <i class="fas fa-arrow-right ml-1"></i></button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Кухня 3 -->
+                <div class="kitchen-card bg-white rounded-lg overflow-hidden shadow-md hover-effect">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="https://images.unsplash.com/photo-1600566752227-17f0baa2a6c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Скандинавская кухня" class="w-full h-full object-cover transition duration-500 hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-amber-500 text-white px-3 py-1 rounded-full font-bold">от 85 000 ₽</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Скандинавская</h3>
+                        <p class="text-gray-600 mb-4">Минимализм и функциональность. Светлые тона, натуральные материалы, простота форм.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500"><i class="fas fa-clock mr-1"></i> Срок: 3-4 недель</span>
+                            <button class="text-amber-500 hover:text-amber-600 font-medium open-modal" 
+                                data-kitchen="Скандинавская" 
+                                data-price="85 000 ₽" 
+                                data-image="https://images.unsplash.com/photo-1600566752227-17f0baa2a6c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                                data-description="Скандинавский стиль сочетает минимализм и уют. Фасады из ЛДСП или шпона в светлых тонах (белый, светло-серый, натуральный дуб). Простые формы, открытые полки, натуральные текстуры. Подходит для небольших пространств (от 1,8 м). Возможна интеграция скрытой подсветки и экологичных материалов. Срок изготовления: 3-4 недели."
+                                data-images='[
+                                    "https://images.unsplash.com/photo-1600566752227-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                                    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                                    "https://images.unsplash.com/photo-1600210492493-0946911123ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80"
+                                ]'>Подробнее <i class="fas fa-arrow-right ml-1"></i></button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Кухня 4 -->
+                <div class="kitchen-card bg-white rounded-lg overflow-hidden shadow-md hover-effect">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Лофт кухня" class="w-full h-full object-cover transition duration-500 hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-amber-500 text-white px-3 py-1 rounded-full font-bold">от 110 000 ₽</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Лофт</h3>
+                        <p class="text-gray-600 mb-4">Индустриальный стиль с элементами грубости. Металл, кирпич, дерево, открытые коммуникации.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500"><i class="fas fa-clock mr-1"></i> Срок: 5-7 недель</span>
+                            <button class="text-amber-500 hover:text-amber-600 font-medium open-modal" 
+                                data-kitchen="Лофт" 
+                                data-price="110 000 ₽" 
+                                data-image="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                                data-description="Лофт-стиль для смелых интерьеров. Фасады из шпона или металла, открытые полки, элементы кирпича или бетона. Подходит для больших пространств (от 3 м). Возможна кастомизация: выбор текстур (дерево, металл), добавление барной стойки, интеграция техники в индустриальном стиле. Срок изготовления: 5-7 недель."
+                                data-images='[
+                                    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                                    "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                                    "https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
+                                ]'>Подробнее <i class="fas fa-arrow-right ml-1"></i></button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Кухня 5 -->
+                <div class="kitchen-card bg-white rounded-lg overflow-hidden shadow-md hover-effect">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Минимализм кухня" class="w-full h-full object-cover transition duration-500 hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-amber-500 text-white px-3 py-1 rounded-full font-bold">от 90 000 ₽</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Минимализм</h3>
+                        <p class="text-gray-600 mb-4">Четкие линии, отсутствие декора, скрытые ручки, монохромная цветовая гамма.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500"><i class="fas fa-clock mr-1"></i> Срок: 3-5 недель</span>
+                            <button class="text-amber-500 hover:text-amber-600 font-medium open-modal" 
+                                data-kitchen="Минимализм" 
+                                data-price="90 000 ₽" 
+                                data-image="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                                data-description="Минимализм для ценителей простоты. Фасады из МДФ с матовым покрытием, скрытые ручки, монохромные оттенки (серый, белый, черный). Подходит для любых пространств (от 1,8 м). Возможна установка умной техники и скрытых систем хранения. Экологичные материалы, высокая функциональность. Срок изготовления: 3-5 недель."
+                                data-images='[
+                                    "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                                    "https://images.unsplash.com/photo-1600210492493-0946911123ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80",
+                                    "https://images.unsplash.com/photo-1600585153490-76fb20a0f2b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
+                                ]'>Подробнее <i class="fas fa-arrow-right ml-1"></i></button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Кухня 6 (Индивидуальный дизайн) -->
+                <div class="kitchen-card bg-white rounded-lg overflow-hidden shadow-md hover-effect">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="https://images.unsplash.com/photo-1600585153490-76fb20a0f2b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Индивидуальный дизайн" class="w-full h-full object-cover transition duration-500 hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-amber-500 text-white px-3 py-1 rounded-full font-bold">от 150 000 ₽</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Индивидуальный дизайн</h3>
+                        <p class="text-gray-600 mb-4">Уникальный проект, созданный специально для вас. Любые материалы, формы и решения под ваш вкус.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500"><i class="fas fa-clock mr-1"></i> Срок: 6-10 недель</span>
+                            <button class="text-amber-500 hover:text-amber-600 font-medium open-modal" 
+                                data-kitchen="Индивидуальный дизайн" 
+                                data-price="150 000 ₽" 
+                                data-image="https://images.unsplash.com/photo-1600585153490-76fb20a0f2b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                                data-description="Полностью индивидуальный проект, созданный с учетом ваших пожеланий. Выбор любых материалов: от массива дерева до стекла и металла. Возможны нестандартные формы, уникальные цветовые решения, интеграция дизайнерской техники. Подходит для любых помещений (от 2 м). Разработка 3D-проекта включена. Срок изготовления: 6-10 недель."
+                                data-images='[
+                                    "https://images.unsplash.com/photo-1600585153490-76fb20a0f2b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                                    "https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+                                    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
+                                ]'>Подробнее <i class="fas fa-arrow-right ml-1"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Модальное окно -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">×</span>
+            <div class="modal-top">
+                <div class="slider-container">
+                    <button class="slider-btn slider-btn-left">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                        </svg>
+                    </button>
+                    <div class="slider" id="modal-slider">
+                        <!-- Слайды добавляются динамически через JS -->
+                    </div>
+                    <button class="slider-btn slider-btn-right">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/>
+                        </svg>
+                    </button>
+                    <div class="slider-dots" id="slider-dots">
+                        <!-- Точки добавляются динамически через JS -->
+                    </div>
+                </div>
+            </div>
+            <div class="modal-bottom">
+                <div>
+                    <h3 id="modal-title" class="modal-title"></h3>
+                    <div class="modal-divider"></div>
+                    <p id="modal-description" class="modal-description"></p>
+                    <p id="modal-price" class="modal-price"></p>
+                </div>
+                <button id="modal-submit" class="modal-submit bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300 w-full">Оставить заявку</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- О нас -->
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Наше производство" class="rounded-lg shadow-lg w-full">
+                </div>
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl font-bold mb-6">О нашей компании</h2>
+                    <p class="text-gray-600 mb-4">Мы - команда профессионалов с 15-летним опытом в производстве кухонь на заказ. Наша миссия - создавать кухни, которые станут сердцем вашего дома.</p>
+                    <p class="text-gray-600 mb-6">Каждая кухня изготавливается индивидуально под ваши потребности и пожелания. Мы используем только качественные материалы от проверенных поставщиков и современное оборудование.</p>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="flex items-center">
+                            <div class="bg-amber-100 w-10 h-10 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-check text-amber-500"></i>
+                            </div>
+                            <span class="font-medium">Бесплатный замер</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-amber-100 w-10 h-10 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-check text-amber-500"></i>
+                            </div>
+                            <span class="font-medium">3D-визуализация</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-amber-100 w-10 h-10 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-check text-amber-500"></i>
+                            </div>
+                            <span class="font-medium">Собственное производство</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-amber-100 w-10 h-10 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-check text-amber-500"></i>
+                            </div>
+                            <span class="font-medium">Гарантия 5 лет</span>
+                        </div>
+                    </div>
+                    
+                    <a href="#contacts" class="inline-block bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-6 rounded-full transition duration-300">Связаться с нами</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Доставка и установка -->
+    <section id="delivery" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Доставка и установка</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="text-amber-500 text-4xl mb-4">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Доставка</h3>
+                    <p class="text-gray-600 mb-4">Бесплатная доставка в пределах города при заказе от 100 000 ₽. В другие районы - по договоренности.</p>
+                    <ul class="text-gray-600 space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-amber-500 mt-1 mr-2"></i>
+                            <span>Доставка в удобное для вас время</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-amber-500 mt-1 mr-2"></i>
+                            <span>Аккуратная транспортировка</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-amber-500 mt-1 mr-2"></i>
+                            <span>Подъем на этаж</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="text-amber-500 text-4xl mb-4">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Установка</h3>
+                    <p class="text-gray-600 mb-4">Профессиональный монтаж кухни нашими специалистами. Гарантия на монтажные работы - 2 года.</p>
+                    <ul class="text-gray-600 space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-amber-500 mt-1 mr-2"></i>
+                            <span>Точная установка по уровню</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-amber-500 mt-1 mr-2"></i>
+                            <span>Подключение техники</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-amber-500 mt-1 mr-2"></i>
+                            <span>Уборка после монтажа</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="text-amber-500 text-4xl mb-4">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Сроки</h3>
+                    <p class="text-gray-600 mb-4">Средний срок изготовления кухни - 4-6 недель. Возможен срочный заказ за дополнительную плату.</p>
+                    <ul class="text-gray-600 space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-amber-500 mt-1 mr-2"></i>
+                            <span>Точные сроки в договоре</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-amber-500 mt-1 mr-2"></i>
+                            <span>Информирование о готовности</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-amber-500 mt-1 mr-2"></i>
+                            <span>Гибкий график доставки</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Оплата -->
+    <section id="payment" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Способы оплаты</h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-amber-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-money-bill-wave text-amber-500 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">Наличный расчет</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">Оплата наличными при получении кухни или в нашем офисе. Предоставляем все необходимые документы.</p>
+                        <ul class="text-gray-600 space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-amber-500 mt-1 mr-2"></i>
+                                <span>Кассовый чек</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-amber-500 mt-1 mr-2"></i>
+                                <span>Договор</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-amber-500 mt-1 mr-2"></i>
+                                <span>Акт приема-передачи</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-amber-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-credit-card text-amber-500 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">Безналичный расчет</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">Оплата по безналичному расчету для юридических и физических лиц. Работаем с НДС и без НДС.</p>
+                        <ul class="text-gray-600 space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-amber-500 mt-1 mr-2"></i>
+                                <span>Перевод на расчетный счет</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-amber-500 mt-1 mr-2"></i>
+                                <span>Оплата картой в офисе</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-amber-500 mt-1 mr-2"></i>
+                                <span>Рассрочка 0% до 6 месяцев</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="mt-8 bg-amber-50 p-6 rounded-lg border border-amber-200">
+                    <div class="flex items-start">
+                        <div class="bg-amber-100 w-12 h-12 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                            <i class="fas fa-percentage text-amber-500 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Рассрочка без переплат</h3>
+                            <p class="text-gray-600">Мы предлагаем удобную рассрочку на 6 месяцев без процентов и переплат. Первый взнос - 30% от стоимости кухни.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contacts" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Контакты</h2>
+            
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-4">Менеджер по продажам</h3>
+                        <div class="flex items-center mb-4">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Менеджер" class="w-16 h-16 rounded-full mr-4">
+                            <div>
+                                <p class="font-bold">Иванова Анна</p>
+                                <p class="text-gray-600">Ваш персональный консультант</p>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <i class="fas fa-phone-alt text-amber-500 mt-1 mr-3"></i>
+                                <div>
+                                    <p class="text-gray-500 text-sm">Телефон</p>
+                                    <a href="tel:+74951234567" class="font-medium hover:text-amber-500">+7 (495) 123-45-67</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <i class="fas fa-envelope text-amber-500 mt-1 mr-3"></i>
+                                <div>
+                                    <p class="text-gray-500 text-sm">Email</p>
+                                    <a href="mailto:info@kuhnipremium.ru" class="font-medium hover:text-amber-500">info@kuhnipremium.ru</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <i class="fas fa-map-marker-alt text-amber-500 mt-1 mr-3"></i>
+                                <div>
+                                    <p class="text-gray-500 text-sm">Адрес</p>
+                                    <p class="font-medium">г. Москва, ул. Кухонная, д. 15</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <i class="fas fa-clock text-amber-500 mt-1 mr-3"></i>
+                                <div>
+                                    <p class="text-gray-500 text-sm">Режим работы</p>
+                                    <p class="font-medium">Пн-Пт: 9:00 - 20:00</p>
+                                    <p class="font-medium">Сб-Вс: 10:00 - 18:00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-4">Как нас найти</h3>
+                        <div class="aspect-w-16 aspect-h-9">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2245.373789919745!2d37.618856315930474!3d55.75370398055238!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b54a5a738fa419%3A0x7c347d506f52311f!2z0JrRgNCw0YHQvdC-0Lkg0L_RgNC-0YHQv9C10LrRgiwg0JzQvtGB0LrQstCw!5e0!3m2!1sru!2sru!4v1623256789045!5m2!1sru!2sru" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" class="rounded-lg"></iframe>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-4">Оставить заявку</h3>
+                        <p class="text-gray-600 mb-6">Заполните форму, и наш менеджер свяжется с вами в ближайшее время для уточнения деталей.</p>
+                        
+                        <form class="contact-form space-y-4">
+                            <div>
+                                <label for="name" class="block text-gray-700 mb-1">Ваше имя</label>
+                                <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-amber-500" placeholder="Иван Иванов">
+                            </div>
+                            
+                            <div>
+                                <label for="phone" class="block text-gray-700 mb-1">Телефон</label>
+                                <input type="tel" id="phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-amber-500" placeholder="+7 (999) 123-45-67">
+                            </div>
+                            
+                            <div>
+                                <label for="email" class="block text-gray-700 mb-1">Email</label>
+                                <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-amber-500" placeholder="ivanov@example.com">
+                            </div>
+                            
+                            <div>
+                                <label for="message" class="block text-gray-700 mb-1">Сообщение</label>
+                                <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-amber-500" placeholder="Опишите вашу будущую кухню..."></textarea>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-4 rounded-lg transition duration-300">Отправить заявку</button>
+                        </form>
+                    </div>
+                    
+                    <div class="mt-6 bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-4">Мы в социальных сетях</h3>
+                        <div class="flex space-x-4">
+                            <a href="#" class="bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-700 transition duration-300">
+                                <i class="fab fa-vk"></i>
+                            </a>
+                            <a href="#" class="bg-pink-600 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-pink-700 transition duration-300">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="bg-blue-500 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-600 transition duration-300">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="bg-green-500 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-green-600 transition duration-300">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="#" class="bg-red-500 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-red-600 transition duration-300">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-utensils text-3xl text-amber-500 mr-2"></i>
+                        <span class="text-2xl font-bold">Кухни<span class="text-amber-500">Премиум</span></span>
+                    </div>
+                    <p class="text-gray-400 max-w-md">Изготовление кухонь на заказ по индивидуальным проектам. Качество, надежность, гарантия.</p>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+                    <div>
+                        <h4 class="text-lg font-bold mb-4">Компания</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#about" class="text-gray-400 hover:text-amber-400 transition duration-300">О нас</a></li>
+                            <li><a href="#delivery" class="text-gray-400 hover:text-amber-400 transition duration-300">Доставка</a></li>
+                            <li><a href="#payment" class="text-gray-400 hover:text-amber-400 transition duration-300">Оплата</a></li>
+                            <li><a href="#contacts" class="text-gray-400 hover:text-amber-400 transition duration-300">Контакты</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-bold mb-4">Каталог</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#kitchens" class="text-gray-400 hover:text-amber-400 transition duration-300">Классика</a></li>
+                            <li><a href="#kitchens" class="text-gray-400 hover:text-amber-400 transition duration-300">Модерн</a></li>
+                            <li><a href="#kitchens" class="text-gray-400 hover:text-amber-400 transition duration-300">Скандинавский</a></li>
+                            <li><a href="#kitchens" class="text-gray-400 hover:text-amber-400 transition duration-300">Лофт</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-bold mb-4">Контакты</h4>
+                        <ul class="space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-phone-alt text-amber-500 mt-1 mr-2"></i>
+                                <a href="tel:+74951234567" class="text-gray-400 hover:text-amber-400 transition duration-300">+7 (495) 123-45-67</a>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-envelope text-amber-500 mt-1 mr-2"></i>
+                                <a href="mailto:info@kuhnipremium.ru" class="text-gray-400 hover:text-amber-400 transition duration-300">info@kuhnipremium.ru</a>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-map-marker-alt text-amber-500 mt-1 mr-2"></i>
+                                <span class="text-gray-400">г. Москва, ул. Кухонная, д. 15</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="text-gray-400 text-sm mb-4 md:mb-0">
+                        <p>© 2023 КухниПремиум. Все права защищены.</p>
+                    </div>
+                    
+                    <div class="text-gray-400 text-sm">
+                        <p>ООО "КухниПремиум" ИНН 1234567890 ОГРН 1234567890123</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Кнопка "Наверх" -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-amber-500 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:bg-amber-600 transition duration-300 hidden">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Мобильное меню
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+        
+        // Плавная прокрутка
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Закрываем мобильное меню после клика
+                document.getElementById('mobile-menu').classList.add('hidden');
+                
+                // Подсвечиваем активную ссылку
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+        
+        // Кнопка "Наверх"
+        window.addEventListener('scroll', function() {
+            const backToTopButton = document.getElementById('back-to-top');
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('hidden');
+            } else {
+                backToTopButton.classList.add('hidden');
+            }
+        });
+        
+        document.getElementById('back-to-top').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Подсветка активного раздела в навигации
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // Отправка формы
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Спасибо! Ваша заявка отправлена. Мы свяжемся с вами в ближайшее время.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
